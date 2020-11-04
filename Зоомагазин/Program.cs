@@ -8,7 +8,7 @@ namespace Зоомагазин
 {
     static class Program
     {
-        public static ZOOEntities zooDb = new ZOOEntities();
+        public static ZOOEntities1 zooDb = new ZOOEntities1();
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>

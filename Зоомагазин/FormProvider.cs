@@ -14,16 +14,11 @@ namespace Зоомагазин
     {
         void ShowProviders()
         {
-            //Предварительно очищаем listView
             listViewProvider.Items.Clear();
-            //Проходимся по коллекции клиентов, которые находятся в базе с помощью foreach
             foreach (ProvidersSet providerSet in Program.zooDb.ProvidersSet)
             {
-                //создаем новый элемент в listView
-                //для этого создаем новый массив строк
                 ListViewItem item = new ListViewItem(new string[]
                 {
-                    //указываем необходимые поля
                     providerSet.Id.ToString(),
                     providerSet.CompanyName,
                     "г. " + providerSet.Address_City+", " + "ул. " + providerSet.Address_Street+", "+
@@ -31,9 +26,7 @@ namespace Зоомагазин
                     providerSet.Phone,
                     providerSet.Email
                 });
-                //указываем по какому тегу будем брать элементы
                 item.Tag = providerSet;
-                //добавляем элементы в listView для отображения
                 listViewProvider.Items.Add(item);
             }
         }
@@ -53,9 +46,7 @@ namespace Зоомагазин
         {
             try
             {
-                //Создаем новый экземпляр класса Поставщик
                 ProvidersSet providerSet = new ProvidersSet();
-                //Делаем ссылку на объект, который хранится в textBox-ax
                 providerSet.CompanyName = textBoxCompanyName.Text;
                 providerSet.Address_City = textBoxAddress_City.Text;
                 providerSet.Address_Street = textBoxAddress_Street.Text;
@@ -66,9 +57,8 @@ namespace Зоомагазин
                 {
                     throw new Exception("Данные о поставщике не заполнены");
                 }
-                //Добавляем в таблицу ProviderSet нового клиента providerSet
+
                 Program.zooDb.ProvidersSet.Add(providerSet);
-                //Сохраняем изменения в модели zokiDb (экземпляр которой был создан ранее)
                 Program.zooDb.SaveChanges();
                 ShowProviders();
             }
@@ -82,7 +72,6 @@ namespace Зоомагазин
                 if (listViewProvider.SelectedItems.Count == 1)
                 {
                     ProvidersSet providerSet = listViewProvider.SelectedItems[0].Tag as ProvidersSet;
-                    //Делаем ссылку на объект, который хранится в textBox-ax
                     providerSet.CompanyName = textBoxCompanyName.Text;
                     providerSet.Address_City = textBoxAddress_City.Text;
                     providerSet.Address_Street = textBoxAddress_Street.Text;
@@ -93,9 +82,17 @@ namespace Зоомагазин
                     {
                         throw new Exception("Данные о поставщике не заполнены");
                     }
-                    //Сохраняем изменения в модели zokiDb (экземпляр которой был создан ранее)
                     Program.zooDb.SaveChanges();
                     ShowProviders();
+                }
+                else
+                {
+                    textBoxCompanyName.Text = "";
+                    textBoxAddress_City.Text = "";
+                    textBoxAddress_Home.Text = "";
+                    textBoxAddress_Street.Text = "";
+                    textBoxPhone.Text = "";
+                    textBoxEmail.Text = "";
                 }
             }
             catch (Exception ex) { MessageBox.Show("" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -105,19 +102,13 @@ namespace Зоомагазин
         {
             try
             {
-                //если выбран 1 элемент из listView
                 if (listViewProvider.SelectedItems.Count == 1)
                 {
-                    //ищем этот элемент
                     ProvidersSet providerSet = listViewProvider.SelectedItems[0].Tag as ProvidersSet;
-                    //удаляем из модели и базы данных
                     Program.zooDb.ProvidersSet.Remove(providerSet);
-                    //сохраняем изменения
                     Program.zooDb.SaveChanges();
-                    //отображаем обновленный список
                     ShowProviders();
                 }
-                //очищаем textBox-ы
                 textBoxCompanyName.Text = "";
                 textBoxAddress_City.Text = "";
                 textBoxAddress_Home.Text = "";
@@ -126,10 +117,8 @@ namespace Зоомагазин
                 textBoxEmail.Text = "";
 
             }
-            //если возникает какая-то ошибка, к примеру, запись используется, выводим всплывающее сообщение
             catch
             {
-                //вызываем метод для всплывающего окна, в котором указываем текст, заголовок, кнопку и иконку
                 MessageBox.Show("Невозможно удалить, эта запись используется!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -138,9 +127,7 @@ namespace Зоомагазин
         {
             if (listViewProvider.SelectedItems.Count == 1)
             {
-                //ищем элемент из таблицы по тегу
                 ProvidersSet providerSet = listViewProvider.SelectedItems[0].Tag as ProvidersSet;
-                //указываем, что может быть изменено
                 textBoxCompanyName.Text = providerSet.CompanyName;
                 textBoxAddress_City.Text = providerSet.Address_City;
                 textBoxAddress_Street.Text = providerSet.Address_Street;
@@ -150,7 +137,6 @@ namespace Зоомагазин
             }
             else
             {
-                //условие, иначе, если не выбран ни один элемент, то задаем пустые поля
                 textBoxCompanyName.Text = "";
                 textBoxPhone.Text = "";
                 textBoxEmail.Text = "";

@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomsSet.cs">
-      <DependentUpon>ModelZoo.tt</DependentUpon>
+      <DependentUpon>ModelZOO.tt</DependentUpon>
     </Compile>
     <Compile Include="FormMenu.cs">
       <SubType>Form</SubType>
@@ -76,34 +76,46 @@
     <Compile Include="FormProvider.Designer.cs">
       <DependentUpon>FormProvider.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelZoo.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelZoo.Context.tt</DependentUpon>
+    <Compile Include="FormStorage.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModelZoo.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelZoo.tt</DependentUpon>
+    <Compile Include="FormStorage.Designer.cs">
+      <DependentUpon>FormStorage.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelZoo.Designer.cs">
+    <Compile Include="ModelZOO.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelZoo.edmx</DependentUpon>
+      <DependentUpon>ModelZOO.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelZOO.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelZOO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelZOO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelZOO.edmx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvidersSet.cs">
-      <DependentUpon>ModelZoo.tt</DependentUpon>
+      <DependentUpon>ModelZOO.tt</DependentUpon>
     </Compile>
     <Compile Include="StoragSet.cs">
-      <DependentUpon>ModelZoo.tt</DependentUpon>
+      <DependentUpon>ModelZOO.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormCustoms.resx">
+      <DependentUpon>FormCustoms.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProvider.resx">
       <DependentUpon>FormProvider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStorage.resx">
+      <DependentUpon>FormStorage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -114,12 +126,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="ModelZoo.edmx">
+    <EntityDeploy Include="ModelZOO.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelZoo.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelZOO.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ModelZoo.edmx.diagram">
-      <DependentUpon>ModelZoo.edmx</DependentUpon>
+    <None Include="ModelZOO.edmx.diagram">
+      <DependentUpon>ModelZOO.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -136,19 +148,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModelZoo.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelZoo.Context.cs</LastGenOutput>
-      <DependentUpon>ModelZoo.edmx</DependentUpon>
-    </Content>
-    <Content Include="ModelZoo.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelZoo.edmx</DependentUpon>
-      <LastGenOutput>ModelZoo.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="ModelZOO.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelZOO.edmx</DependentUpon>
+      <LastGenOutput>ModelZOO.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelZOO.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelZOO.edmx</DependentUpon>
+      <LastGenOutput>ModelZOO.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

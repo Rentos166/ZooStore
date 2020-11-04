@@ -60,6 +60,7 @@
             this.OpenStorage.TabIndex = 5;
             this.OpenStorage.Text = "Склад";
             this.OpenStorage.UseVisualStyleBackColor = true;
+            this.OpenStorage.Click += new System.EventHandler(this.OpenStorage_Click);
             // 
             // OpenProvider
             // 

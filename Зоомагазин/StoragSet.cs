@@ -20,7 +20,7 @@ namespace Зоомагазин
         public string Type { get; set; }
         public int Mk { get; set; }
         public int Number { get; set; }
-        public decimal Price { get; set; }
+        public int Price { get; set; }
     
         public virtual ProvidersSet ProvidersSet { get; set; }
     }

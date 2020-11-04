@@ -13,10 +13,10 @@ namespace Зоомагазин
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ZOOEntities : DbContext
+    public partial class ZOOEntities1 : DbContext
     {
-        public ZOOEntities()
-            : base("name=ZOOEntities")
+        public ZOOEntities1()
+            : base("name=ZOOEntities1")
         {
         }
     

@@ -27,5 +27,11 @@ namespace Зоомагазин
             Form formProviders = new FormProvider();
             formProviders.Show();
         }
+
+        private void OpenStorage_Click(object sender, EventArgs e)
+        {
+            Form formStorage = new FormStorage();
+            formStorage.Show();
+        }
     }
 }
