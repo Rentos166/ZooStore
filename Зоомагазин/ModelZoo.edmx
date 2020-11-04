@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ZOOModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CustomsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProvider" Type="int" Nullable="false" />
+          <Property Name="NameProduct" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MkProduct" Type="int" Nullable="false" />
+          <Property Name="NumberProduct" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Date" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ProvidersSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address_City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address_Street" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address_Home" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="StoragSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProvider" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="Mk" Type="int" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CustomSet_ProviderSet">
+          <End Role="ProvidersSet" Type="Self.ProvidersSet" Multiplicity="1" />
+          <End Role="CustomsSet" Type="Self.CustomsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProvidersSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomsSet">
+              <PropertyRef Name="IdProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSet_ProviderSet">
+          <End Role="ProvidersSet" Type="Self.ProvidersSet" Multiplicity="1" />
+          <End Role="StoragSet" Type="Self.StoragSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProvidersSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StoragSet">
+              <PropertyRef Name="IdProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ZOOModelContainer">
+          <EntitySet Name="CustomsSet" EntityType="Self.CustomsSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProvidersSet" EntityType="Self.ProvidersSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoragSet" EntityType="Self.StoragSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CustomSet_ProviderSet" Association="Self.FK_CustomSet_ProviderSet">
+            <End Role="ProvidersSet" EntitySet="ProvidersSet" />
+            <End Role="CustomsSet" EntitySet="CustomsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSet_ProviderSet" Association="Self.FK_ProductSet_ProviderSet">
+            <End Role="ProvidersSet" EntitySet="ProvidersSet" />
+            <End Role="StoragSet" EntitySet="StoragSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ZOOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CustomsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProvider" Type="Int32" Nullable="false" />
+          <Property Name="NameProduct" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MkProduct" Type="Int32" Nullable="false" />
+          <Property Name="NumberProduct" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="ProvidersSet" Relationship="Self.FK_CustomSet_ProviderSet" FromRole="CustomsSet" ToRole="ProvidersSet" />
+        </EntityType>
+        <EntityType Name="ProvidersSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address_City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address_Street" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address_Home" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CustomsSet" Relationship="Self.FK_CustomSet_ProviderSet" FromRole="ProvidersSet" ToRole="CustomsSet" />
+          <NavigationProperty Name="StoragSet" Relationship="Self.FK_ProductSet_ProviderSet" FromRole="ProvidersSet" ToRole="StoragSet" />
+        </EntityType>
+        <EntityType Name="StoragSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProvider" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mk" Type="Int32" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="ProvidersSet" Relationship="Self.FK_ProductSet_ProviderSet" FromRole="StoragSet" ToRole="ProvidersSet" />
+        </EntityType>
+        <Association Name="FK_CustomSet_ProviderSet">
+          <End Role="ProvidersSet" Type="Self.ProvidersSet" Multiplicity="1" />
+          <End Role="CustomsSet" Type="Self.CustomsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProvidersSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomsSet">
+              <PropertyRef Name="IdProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSet_ProviderSet">
+          <End Role="ProvidersSet" Type="Self.ProvidersSet" Multiplicity="1" />
+          <End Role="StoragSet" Type="Self.StoragSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProvidersSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StoragSet">
+              <PropertyRef Name="IdProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZOOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CustomsSet" EntityType="Self.CustomsSet" />
+          <EntitySet Name="ProvidersSet" EntityType="Self.ProvidersSet" />
+          <EntitySet Name="StoragSet" EntityType="Self.StoragSet" />
+          <AssociationSet Name="FK_CustomSet_ProviderSet" Association="Self.FK_CustomSet_ProviderSet">
+            <End Role="ProvidersSet" EntitySet="ProvidersSet" />
+            <End Role="CustomsSet" EntitySet="CustomsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSet_ProviderSet" Association="Self.FK_ProductSet_ProviderSet">
+            <End Role="ProvidersSet" EntitySet="ProvidersSet" />
+            <End Role="StoragSet" EntitySet="StoragSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ZOOModelContainer" CdmEntityContainer="ZOOEntities">
+          <EntitySetMapping Name="CustomsSet">
+            <EntityTypeMapping TypeName="ZOOModel.CustomsSet">
+              <MappingFragment StoreEntitySet="CustomsSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdProvider" ColumnName="IdProvider" />
+                <ScalarProperty Name="NameProduct" ColumnName="NameProduct" />
+                <ScalarProperty Name="MkProduct" ColumnName="MkProduct" />
+                <ScalarProperty Name="NumberProduct" ColumnName="NumberProduct" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProvidersSet">
+            <EntityTypeMapping TypeName="ZOOModel.ProvidersSet">
+              <MappingFragment StoreEntitySet="ProvidersSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address_City" ColumnName="Address_City" />
+                <ScalarProperty Name="Address_Street" ColumnName="Address_Street" />
+                <ScalarProperty Name="Address_Home" ColumnName="Address_Home" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoragSet">
+            <EntityTypeMapping TypeName="ZOOModel.StoragSet">
+              <MappingFragment StoreEntitySet="StoragSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdProvider" ColumnName="IdProvider" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Mk" ColumnName="Mk" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
