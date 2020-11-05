@@ -17,9 +17,12 @@ namespace Зоомагазин
         public int Id { get; set; }
         public int IdProvider { get; set; }
         public string NameProduct { get; set; }
+        public string TypeProduct { get; set; }
         public int MkProduct { get; set; }
-        public string NumberProduct { get; set; }
-        public string Date { get; set; }
+        public int NumberProduct { get; set; }
+        public int Price { get; set; }
+        public System.DateTime Date { get; set; }
+        public string Status { get; set; }
     
         public virtual ProvidersSet ProvidersSet { get; set; }
     }

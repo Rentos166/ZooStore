@@ -51,6 +51,7 @@
             this.OpenCustom.TabIndex = 6;
             this.OpenCustom.Text = "Заказы";
             this.OpenCustom.UseVisualStyleBackColor = true;
+            this.OpenCustom.Click += new System.EventHandler(this.OpenCustom_Click);
             // 
             // OpenStorage
             // 

@@ -12,9 +12,12 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdProvider" Type="int" Nullable="false" />
           <Property Name="NameProduct" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TypeProduct" Type="nvarchar(max)" Nullable="false" />
           <Property Name="MkProduct" Type="int" Nullable="false" />
-          <Property Name="NumberProduct" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Date" Type="nchar" MaxLength="10" />
+          <Property Name="NumberProduct" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Status" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ProvidersSet">
           <Key>
@@ -89,9 +92,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdProvider" Type="Int32" Nullable="false" />
           <Property Name="NameProduct" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeProduct" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MkProduct" Type="Int32" Nullable="false" />
-          <Property Name="NumberProduct" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Date" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NumberProduct" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProvidersSet" Relationship="Self.FK_CustomSet_ProviderSet" FromRole="CustomsSet" ToRole="ProvidersSet" />
         </EntityType>
         <EntityType Name="ProvidersSet">
@@ -170,9 +176,12 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdProvider" ColumnName="IdProvider" />
                 <ScalarProperty Name="NameProduct" ColumnName="NameProduct" />
+                <ScalarProperty Name="TypeProduct" ColumnName="TypeProduct" />
                 <ScalarProperty Name="MkProduct" ColumnName="MkProduct" />
                 <ScalarProperty Name="NumberProduct" ColumnName="NumberProduct" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
